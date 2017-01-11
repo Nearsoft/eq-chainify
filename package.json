@@ -1,0 +1,25 @@
+{
+  "name": "eq-chainify",
+  "version": "1.0.0",
+  "description": "Library for creating objects and maintaning the chainning.",
+  "main": "chainify.js",
+  "scripts": {
+    "test": "mocha",
+    "build-doc": "jsdoc src/chainify.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Nearsoft/eq-chainify.git"
+  },
+  "author": "",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Nearsoft/eq-chainify/issues"
+  },
+  "homepage": "https://github.com/Nearsoft/eq-chainify#readme",
+  "devDependencies": {
+    "chai": "^3.5.0",
+    "jsdoc": "^3.4.3",
+    "mocha": "^3.2.0"
+  }
+}
