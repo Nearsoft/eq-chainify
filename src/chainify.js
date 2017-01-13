@@ -24,7 +24,7 @@ function chainify(obj) {
          * @param {string} name - The name that will be used to invoke the method.
          * @param {function} method - The callback that will be invoked.
          */
-        add: (name, method) => {
+        method: (name, method) => {
             result[name] = (...params) => {
                 method.apply(null, params);
                 return result;

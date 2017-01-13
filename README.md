@@ -1,5 +1,5 @@
 # eq-chainify
-Library for creating objects and maintaning the chainning.
+A Builder library that provides a simple way to create complex objects using chaining pattern.
 
 ##Example
 ```js
@@ -12,6 +12,7 @@ Library for creating objects and maintaning the chainning.
         return chainify.call(car, { specifications: () => car })
             .field('color', 'white') // by default all cars are white
             .field('brand')
+            .method('switchEngine', () => car['on'] = !car['on'])
             .value();
     }
 ``` 
