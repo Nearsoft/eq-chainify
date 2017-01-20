@@ -1,24 +1,25 @@
 var chainify = require('../src/chainify');
 
-function makeMotor() {
+function motorBuilder() {
     var motor = {};
     var builder;
 
-    return builder  = chainify.call(motor, { specifications: () => motor })
+    return motor  = chainify.call(motor, { specifications: () => motor })
         .field('liters', 3.6)
         .field('type', 'V6')
-        .value()
+        .value();
 }
 
 function makeCar() {
-    var car = {};
+    var motor = motorBuilder();
+    var car = { motor: motor.specifications() };
     var builder;
 
     return builder = chainify.call(car, { specifications: () => car })
         .field('doors', 4)
         .field('passengers', 4)
         .field('kind', 'sedan')
-        .field('motor', makeMotor().specifications())
+        .method('motor', spec => spec(motor))
         .method('switchEngine', () => car['on'] = !car['on'])
         .value()
 }
@@ -26,12 +27,7 @@ function makeCar() {
 var car = makeCar()
     .doors(2)
     .passengers(2)
-    .motor(
-        makeMotor()
-        .liters(4.0)
-        .type('V8')
-        .specifications()
-    )
+    .motor(m => m.liters(4.0).type('V8'))
     .kind('pick-up')
     .switchEngine();
 
