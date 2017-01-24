@@ -7,7 +7,7 @@ describe('Chainify `method`', () => {
 
     before(() => {
         builder = chainify()
-            .add('setTitle', x => config.title = `hello ${x}`)
+            .method('setTitle', x => config.title = `hello ${x}`)
             .value();
     });
 
