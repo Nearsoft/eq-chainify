@@ -27,18 +27,19 @@ describe('Chainify `field`', () => {
 
     before(() => {
         var config = {};
-        builder = chainify.call(config, { config: () => config })
+        builder = chainify()
+            .obj(config)
             .field('title', 'This is the default title')
             .value();
     });
 
     it('should have the default field value', () => {
-        expect(builder.config()).to.have.property('title').to.be.equal('This is the default title');
+        expect(builder.obj()).to.have.property('title').to.be.equal('This is the default title');
     });
 
     it('should set the title', () => {
-        var result = builder.title('que onda Juan?');
+        var result = builder.title("What's up Juan?");
         expect(result).to.be.equal(builder);
-        expect(builder.config()).to.have.property('title').to.be.equal('que onda Juan?');
+        expect(builder.obj()).to.have.property('title').to.be.equal("What's up Juan?");
     });
 });

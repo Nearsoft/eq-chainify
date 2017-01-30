@@ -1,15 +1,14 @@
 module.exports = chainify;
 /**
  * Returns a chainify instance.
- * @param {object} obj - An object containing some methods or properties that will not act as chain. 
+
  * @returns {object} The object with the methods and properties setters that can be used chained.
- * 
  * @example
  * var builder = chainify()
  */
-function chainify(obj) {
-    var result = obj || {};
-
+function chainify() {
+    var that = this;
+    var result = { obj: () => that };
     /**
      * @memberof something
      */
@@ -19,6 +18,7 @@ function chainify(obj) {
          */
         value: () => result,
 
+        
         /**
          * Adds a new method to the chain and returns the builder to continue adding more methods or fields.
          * @param {string} name - The name that will be used to invoke the method.
@@ -40,11 +40,11 @@ function chainify(obj) {
          */
         field: (name, ...defaultValue) => {
             if (defaultValue.length) {
-                this[name] = defaultValue[0];
+                that[name] = defaultValue[0];
             }
 
             result[name] = (...params) => {
-                this[name] = params.length === 1 ? params[0] : params.slice();
+                that[name] = params.length === 1 ? params[0] : params.slice();
                 return result;
             };
 
@@ -56,16 +56,25 @@ function chainify(obj) {
          * @param {string} name - The boolean field
          */
         boolField: (name, initialValue, defaultValue) => {
-            this[name] = !!initialValue;
+            that[name] = !!initialValue;
 
             result[name] = (flag) => {
-                this[name] = (flag !== undefined) ? !!flag : 
+                that[name] = (flag !== undefined) ? !!flag : 
                     defaultValue === undefined ? !!initialValue : !!defaultValue;
                 return result;
             };
             
             return builder;
-        }
+        },
+
+        /** 
+         *  Add object containing some methods or properties that will not act as chain.
+         * @param {object} seed 
+        */
+        obj: (seed = {}) => {
+            that = Object.assign({},seed);
+            return builder; 
+        },
     };
 
     return builder;
