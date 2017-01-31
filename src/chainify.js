@@ -8,7 +8,7 @@ module.exports = chainify;
  */
 function chainify(result) {
     var that = this;
-    var result = result || { obj: () => that };
+    var result = result || {};
     /**
      * @memberof something
      */
