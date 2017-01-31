@@ -1,14 +1,14 @@
 module.exports = chainify;
 /**
  * Returns a chainify instance.
-
+ 
  * @returns {object} The object with the methods and properties setters that can be used chained.
  * @example
  * var builder = chainify()
  */
-function chainify() {
+function chainify(result) {
     var that = this;
-    var result = { obj: () => that };
+    var result = result || { obj: () => that };
     /**
      * @memberof something
      */
