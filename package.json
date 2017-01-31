@@ -2,7 +2,7 @@
   "name": "eq-chainify",
   "version": "0.1.0",
   "description": "Library for creating objects and maintaning the chainning.",
-  "main": "chainify.js",
+  "main": "src/chainify.js",
   "scripts": {
     "test": "mocha",
     "build-doc": "jsdoc src/chainify.js"
